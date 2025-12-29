@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://bharath-saga.guvvala.xyz
+
+# Sitemaps
+Sitemap: https://bharath-saga.guvvala.xyz/sitemap.xml
