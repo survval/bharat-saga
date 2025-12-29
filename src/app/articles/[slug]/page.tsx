@@ -82,13 +82,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                             <MDXRemote source={article.content} />
                         </div>
 
+                        import ShareButton from '@/components/ShareButton';
+
+                        // ... inside ArticlePage ...
                         <div className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
-                            <div className="flex items-center gap-4">
-                                <span className="text-sm font-medium text-zinc-500">Share this article:</span>
-                                <button className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-                                    <Share2 className="h-4 w-4" />
-                                </button>
-                            </div>
+                            <ShareButton />
                         </div>
                     </div>
 
