@@ -2,9 +2,10 @@ import { getArticleBySlug, getAllArticles } from '@/lib/mdx';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import ArticleMeta from '@/components/ArticleMeta';
 import Disclaimer from '@/components/Disclaimer';
+import ShareButton from '@/components/ShareButton';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Share2 } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 
 interface ArticlePageProps {
     params: Promise<{
@@ -82,9 +83,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                             <MDXRemote source={article.content} />
                         </div>
 
-                        import ShareButton from '@/components/ShareButton';
-
-                        // ... inside ArticlePage ...
                         <div className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
                             <ShareButton />
                         </div>
