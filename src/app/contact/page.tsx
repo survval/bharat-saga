@@ -1,5 +1,6 @@
 import React from 'react';
-import { Mail, MessageSquare, Send } from 'lucide-react';
+import { Mail } from 'lucide-react';
+import ContactForm from '@/components/ContactForm';
 
 export const metadata = {
     title: "Contact Us | Bharath Saga",
@@ -31,44 +32,10 @@ export default function ContactPage() {
                                 <p className="text-zinc-600 dark:text-zinc-400">bharath-saga@guvvala.xyz</p>
                             </div>
                         </div>
-
                     </div>
 
                     {/* Contact Form */}
-                    <div className="bg-white dark:bg-zinc-900 p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
-                        <form className="space-y-4">
-                            <div>
-                                <label className="block text-sm font-medium mb-1">Name</label>
-                                <input
-                                    type="text"
-                                    className="w-full px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 focus:outline-none focus:ring-2 focus:ring-orange-500"
-                                    placeholder="Your name"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium mb-1">Email</label>
-                                <input
-                                    type="email"
-                                    className="w-full px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 focus:outline-none focus:ring-2 focus:ring-orange-500"
-                                    placeholder="your@email.com"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium mb-1">Message</label>
-                                <textarea
-                                    rows={4}
-                                    className="w-full px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 focus:outline-none focus:ring-2 focus:ring-orange-500"
-                                    placeholder="How can we help?"
-                                />
-                            </div>
-                            <button
-                                type="button"
-                                className="w-full py-3 bg-orange-600 text-white font-bold rounded-lg hover:bg-orange-700 transition-colors flex items-center justify-center gap-2"
-                            >
-                                Send Message <Send className="h-4 w-4" />
-                            </button>
-                        </form>
-                    </div>
+                    <ContactForm />
                 </div>
             </div>
         </div>
