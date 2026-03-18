@@ -1,19 +1,27 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Send, CheckCircle2 } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { sendContactEmail } from '@/lib/email-actions';
 
 export default function ContactForm() {
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setStatus('submitting');
+        setErrorMessage('');
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        const formData = new FormData(e.currentTarget);
+        const result = await sendContactEmail(formData);
 
-        setStatus('success');
+        if (result.success) {
+            setStatus('success');
+        } else {
+            setStatus('error');
+            setErrorMessage(result.error || 'Failed to send message');
+        }
     };
 
     if (status === 'success') {
@@ -37,10 +45,17 @@ export default function ContactForm() {
     return (
         <div className="bg-white dark:bg-zinc-900 p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
             <form onSubmit={handleSubmit} className="space-y-4">
+                {status === 'error' && (
+                    <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center gap-3 text-red-800 dark:text-red-200 text-sm">
+                        <AlertCircle className="h-5 w-5 flex-shrink-0" />
+                        <p>{errorMessage}</p>
+                    </div>
+                )}
                 <div>
                     <label className="block text-sm font-medium mb-1">Name</label>
                     <input
                         required
+                        name="name"
                         type="text"
                         className="w-full px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all"
                         placeholder="Your name"
@@ -50,6 +65,7 @@ export default function ContactForm() {
                     <label className="block text-sm font-medium mb-1">Email</label>
                     <input
                         required
+                        name="email"
                         type="email"
                         className="w-full px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all"
                         placeholder="your@email.com"
@@ -59,6 +75,7 @@ export default function ContactForm() {
                     <label className="block text-sm font-medium mb-1">Message</label>
                     <textarea
                         required
+                        name="message"
                         rows={4}
                         className="w-full px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all"
                         placeholder="How can we help?"
