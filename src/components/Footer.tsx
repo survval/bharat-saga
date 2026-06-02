@@ -44,7 +44,7 @@ const Footer = () => {
                         </p>
                     </div>
                     <p className="text-xs text-zinc-500">
-                        © {currentYear} Bharath Saga — Respecting the culture & diversity of Bharath
+                        © {currentYear} Bharath Saga. All Rights Reserved. Respecting the culture & diversity of Bharath.
                     </p>
                 </div>
             </div>
